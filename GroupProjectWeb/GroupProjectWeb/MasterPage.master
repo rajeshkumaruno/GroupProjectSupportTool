@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body> 
+    <form id="form1" runat="server"> 
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
+            </Scripts>
+        </telerik:RadScriptManager>
+<%--    <telerik:RadMenu ID="RadMenu1" runat="server"> 
+        <CollapseAnimation Type="OutQuint" Duration="200"></CollapseAnimation> 
+        <Items> 
+            <telerik:RadMenuItem runat="server" Text="Root RadMenuItem1"> 
+                <Items> 
+                    <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1"> 
+                    </telerik:RadMenuItem> 
+                </Items> 
+            </telerik:RadMenuItem> 
+        </Items> 
+    </telerik:RadMenu> --%>
+
+      <div style="float:left;width:700px">
+         <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" CssClass="mainMenu" runat="server" ShowToggleHandle="true">
+            <Items>
+                <telerik:RadMenuItem Text="Home" NavigateUrl="index.aspx" />
+                <telerik:RadMenuItem Text="Project">
+                    <GroupSettings Width="200px" />
+                    <Items>
+                        <telerik:RadMenuItem Text="View" NavigateUrl="ProjectView.aspx" ></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Add" NavigateUrl="ProjectAdd.aspx"  ></telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Text="Task">
+                    <GroupSettings Width="200px" />
+                    <Items>
+                        <telerik:RadMenuItem Text="Add" NavigateUrl="index.aspx"  ></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Update" NavigateUrl="index.aspx"  ></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Delete" NavigateUrl="index.aspx"  ></telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Text="About" NavigateUrl="Index.aspx" />
+            </Items>
+        </telerik:RadMenu>
+   </div>
+
+
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
+    </asp:ContentPlaceHolder> 
+    </form> 
+</body> 
+</html>
