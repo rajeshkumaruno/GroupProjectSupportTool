@@ -4,11 +4,25 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <meta charset="UTF-8">
+            <meta charset="UTF-8">
+        <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+        <title>Group Project Tracker</title>
+        <link rel="stylesheet" href="css/main.css">
+
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+
+
+
 </head>
-<body> 
+
+
+
+<body>
+    
+
+
     <form id="form1" runat="server"> 
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
@@ -17,19 +31,73 @@
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
             </Scripts>
         </telerik:RadScriptManager>
-<%--    <telerik:RadMenu ID="RadMenu1" runat="server"> 
-        <CollapseAnimation Type="OutQuint" Duration="200"></CollapseAnimation> 
-        <Items> 
-            <telerik:RadMenuItem runat="server" Text="Root RadMenuItem1"> 
-                <Items> 
-                    <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1"> 
-                    </telerik:RadMenuItem> 
-                </Items> 
-            </telerik:RadMenuItem> 
-        </Items> 
-    </telerik:RadMenu> --%>
 
-      <div style="float:left;width:700px">
+
+        <div class="navbar">
+            <div class="container">
+
+                <nav>
+                    <a class="logo" href="index.html"><img height = 44px src="img/gpt_logo.png" alt="Group Project Tracker Logo"></a>
+                    <ul class="primary-nav">
+
+                        <li><div class = "nav-div">
+                            <a class="nav-icon" href ="#"><img  height= 30px src="img/home-active-icon.png"></a>
+                            <a class="nav-icon-active" href ="#"><img  height= 30px src="img/home-active-icon.png"></a>
+                            <a class="nav-text" href="Default.aspx"><b>Home</b></a>
+                        </div>
+                        </li>
+
+                        <li> <div class="project-dropdown">
+                            <a class="nav-icon" href ="#"><img  height= 30px src="img/projects-icon.png"></a>
+                            <a class="nav-icon-active" href ="#"><img  height= 30px src="img/projects-active-icon.png"></a>
+                            <a class="project-dropbtn">Projects</a>
+                            <div class="project-dropdown-content">
+                              <a href="ProjectView.aspx">View Project</a>
+                              <a href="ProjectAdd.aspx">Add Project</a>
+                              
+                            </div>
+                          </div>
+                    </li>
+
+                    <li> <div class="project-dropdown">
+                        <a class="nav-icon" href ="#"><img  height= 30px src="img/tasks-icon.png"></a>
+                        <a class="nav-icon-active" href ="#"><img  height= 30px src="img/tasks-active-icon.png"></a>
+                        <a class="project-dropbtn">Tasks</a>
+                        <div class="project-dropdown-content">
+                          <a href="index.apsx">View Task</a>
+                          <a href="index.apsx">Add Task</a>
+                          <a href="index.apsx">Update Task</a>
+                        
+                        </div>
+                        
+                      </div>
+                </li>
+
+                        <li>
+                            <a class="nav-icon" href ="#"><img  height= 30px src="img/meetings-icon.png"></a>
+                            <a class="nav-icon-active" href ="#"><img  height= 30px src="img/meetings-active-icon.png"></a>
+                            <a class="nav-text" href="#">Meetings</a></li>
+
+                        <li>
+                            <a class="nav-icon" href ="about.aspx"><img  height= 30px src="img/about-icon.png"></a>
+                            <a class="nav-icon-active" href ="about.aspx"><img  height= 30px src="img/about-active-icon.png"></a>
+                            <a class="nav-text" href="about.aspx">About</a></li>
+
+
+
+                    </ul>
+                </nav>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+<%--      <div style="float:left;width:700px">
          <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" CssClass="mainMenu" runat="server" ShowToggleHandle="true">
             <Items>
                 <telerik:RadMenuItem Text="Home" NavigateUrl="index.aspx" />
@@ -51,12 +119,15 @@
                 <telerik:RadMenuItem Text="About" NavigateUrl="Index.aspx" />
             </Items>
         </telerik:RadMenu>
-   </div>
+   </div>--%>
 
 
 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
     </asp:ContentPlaceHolder> 
+
+
+
     </form> 
 </body> 
 </html>

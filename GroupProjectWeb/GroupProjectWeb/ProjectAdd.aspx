@@ -8,25 +8,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 
-            <br /><br /><br />
-<table class="tg" style="undefined;table-layout: fixed; width: 584px">
+<br /><br /><br />
+<br /><br /><br />
+<center>
+<table class="tg" style="undefined;table-layout: fixed; width: 800px; vertical-align=center; background-color: #D6EEEE; ">
 <colgroup>
 <col style="width: 249px">
 <col style="width: 335px">
 </colgroup>
 
 <tbody>
-
-
-          <tr>
-    <td class="center" colspan="2" style="align" >
-                        <telerik:RadButton ID="RadButtonView" runat="server" Text="View Project" OnClick="RadButtonView_Click"  >
-                        </telerik:RadButton>
-                                <telerik:RadButton ID="RadButtonHome" runat="server" Text="Home" OnClick="RadButtonHome_Click" >
-                        </telerik:RadButton>
-          </td>
-
-  </tr>
 
 
 
@@ -94,6 +85,7 @@
 
 </tbody>
 </table>
+        </center>
 
 
 

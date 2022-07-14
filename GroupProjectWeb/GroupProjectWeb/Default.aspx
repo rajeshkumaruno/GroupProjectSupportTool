@@ -1,29 +1,75 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+        <div>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        
+        <!--ABOUT PAGE BODY BEGIN-->
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <telerik:RadStyleSheetManager id="RadStyleSheetManager1" runat="server" />
-</head>
-<body>
-    <form id="form1" runat="server">
-    <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
-        <Scripts>
-            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
-            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
-            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
-        </Scripts>
-    </telerik:RadScriptManager>
-    <script type="text/javascript">
-        //Put your JavaScript code here.
-    </script>
-    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
-    </telerik:RadAjaxManager>
-    <div>
+        <section>
+
+            <div align="center" class="about-logo">
+                <img width= "150px" src="img/gpt_logo_large.png" alt="Logo">
+            </div>
+
+            <div class="about-heading">
+            <div class="about-title">Group Project Tracker</div>
+            <div class="about-tagline">This tool provides you all the support you need to facilitate your 
+                <br>group projects! Make your collaboration a success by:</div>
+            </div>
+
+            <!--FEATURES-->
+            <div align="center" class="about-features">
+
+                <div class="about-feature-img">
+                <img width="210px" src="img/about-task-divide.png">
+                <div class="about-features-text">Dividing Tasks</div>
+                </div>
+
+                <div class="about-feature-img">
+                    <img width="210px" src="img/about-project-track.png">
+                    <div class="about-features-text">Tracking Comprehensive <br>Progress</div>
+                    </div>
+
+                <div class="about-feature-img">
+                    <img width="210px" src="img/about-task-track.png">
+                    <div class="about-features-text">Tracking Individual <br>Tasks</div>
+                        </div>
+                <div class="about-feature-img">
+                    <img width="210px" src="img/about-meeting.png">
+                    <div class="about-features-text">Finding Common <br>Open Slots</div>
+                    </div>
+                
+                
+                
+            </div>
+        </section>
+
+        <section>
+
+
+        </section>
+
+
+                    </section>
+
+
+        <!--CONTACT US--> 
+
+
+
+
+                    <div class="about-bottom-spacer"></div>
+
+
+
 
     </div>
-    </form>
-</body>
-</html>
+
+
+
+</asp:Content>
+
+
+

@@ -4,7 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-
+<br /><br /><br />
+<br /><br /><br />
+<center>
 <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">            function rowDblClick(sender, eventArgs) { sender.get_masterTableView().editItem(eventArgs.get_itemIndexHierarchical()); }            </script>
 </telerik:RadCodeBlock>
@@ -58,7 +60,7 @@
     </telerik:NumericTextBoxSetting>
 </telerik:RadInputManager>
 <telerik:RadWindowManager RenderMode="Lightweight" ID="RadWindowManager1" runat="server" />
-
+</center>
 
 </asp:Content>
 
