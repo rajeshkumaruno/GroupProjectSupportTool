@@ -92,7 +92,7 @@
         <classShapeMoniker Id="6e835aa2-6364-4a2b-a02f-2b0618a59bba" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.53929768880208); (12.75 : 5.53929768880208); (12.75 : 7.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.72199625651042); (13.09375 : 5.72199625651042); (13.09375 : 7.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/GroupProjectDataContext/TeamMember/TeamMember_TaskAssignment" />
       <nodes>
         <classShapeMoniker Id="713d5d99-6573-4857-9440-3ea17f1bb3e2" />
@@ -138,5 +138,11 @@
         <classShapeMoniker Id="d14dc4f6-2436-4152-b4d2-b6234050e993" />
       </nodes>
     </associationConnector>
+    <classShape Id="bfccf395-f3fb-4bc6-8421-cbaa997433e2" absoluteBounds="10.375, 4.375, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/GroupProjectDataContext/viewRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99f4a139-e1b9-475b-ac82-350fdfec5b88" absoluteBounds="10.39, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

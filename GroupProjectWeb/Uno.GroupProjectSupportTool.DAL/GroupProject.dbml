@@ -110,6 +110,12 @@
       <Association Name="Project_Task" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.viewRole" Member="viewRoles">
+    <Type Name="viewRole">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.CreateMeetingSlots" Method="CreateMeetingSlots">
     <Return Type="System.Int32" />
   </Function>

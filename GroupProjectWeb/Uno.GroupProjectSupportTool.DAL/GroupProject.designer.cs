@@ -177,6 +177,14 @@ namespace Uno.GroupProjectSupportTool.DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<viewRole> viewRoles
+		{
+			get
+			{
+				return this.GetTable<viewRole>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CreateMeetingSlots")]
 		public int CreateMeetingSlots()
 		{
@@ -2368,6 +2376,51 @@ namespace Uno.GroupProjectSupportTool.DAL
 		{
 			this.SendPropertyChanging();
 			entity.Task = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewRole")]
+	public partial class viewRole
+	{
+		
+		private int _RoleID;
+		
+		private string _RoleName;
+		
+		public viewRole()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int NOT NULL")]
+		public int RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this._RoleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
 		}
 	}
 	

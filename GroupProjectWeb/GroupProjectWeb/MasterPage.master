@@ -71,6 +71,20 @@
                         </div>
                         
                       </div>
+
+                    <li> <div class="project-dropdown">
+                        <a class="nav-icon" href ="#"><img  height= 30px src="img/tasks-icon.png"></a>
+                        <a class="nav-icon-active" href ="#"><img  height= 30px src="img/tasks-active-icon.png"></a>
+                        <a class="project-dropbtn">Team</a>
+                        <div class="project-dropdown-content">
+                          <a href="TaskView.aspx">View TeamMember</a>
+                          <a href="TaskAdd.aspx">Add TeamMember</a>
+                        
+                        </div>
+                        
+                      </div>
+
+
                 </li>
 
                         <li>
