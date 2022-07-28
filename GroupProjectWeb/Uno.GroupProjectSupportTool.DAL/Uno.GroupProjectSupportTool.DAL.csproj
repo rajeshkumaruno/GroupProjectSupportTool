@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroupProject.cs">
+      <DependentUpon>GroupProject.dbml</DependentUpon>
+    </Compile>
     <Compile Include="GroupProject.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,6 +60,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RoleInput.cs" />
+    <Compile Include="TaskInput.cs" />
+    <Compile Include="TeamMemberInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

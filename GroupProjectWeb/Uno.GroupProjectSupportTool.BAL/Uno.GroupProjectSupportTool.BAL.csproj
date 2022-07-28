@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="ProjectBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleBAL.cs" />
+    <Compile Include="TaskBAL.cs" />
+    <Compile Include="TeamMemberBAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uno.GroupProjectSupportTool.DAL\Uno.GroupProjectSupportTool.DAL.csproj">

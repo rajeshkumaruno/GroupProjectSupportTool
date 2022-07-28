@@ -36,6 +36,9 @@ namespace Uno.GroupProjectSupportTool.DAL
     partial void InsertPersonSlotAssignment(PersonSlotAssignment instance);
     partial void UpdatePersonSlotAssignment(PersonSlotAssignment instance);
     partial void DeletePersonSlotAssignment(PersonSlotAssignment instance);
+    partial void InsertProject(Project instance);
+    partial void UpdateProject(Project instance);
+    partial void DeleteProject(Project instance);
     partial void InsertProjectTeamAssignment(ProjectTeamAssignment instance);
     partial void UpdateProjectTeamAssignment(ProjectTeamAssignment instance);
     partial void DeleteProjectTeamAssignment(ProjectTeamAssignment instance);
@@ -45,18 +48,15 @@ namespace Uno.GroupProjectSupportTool.DAL
     partial void InsertSlot(Slot instance);
     partial void UpdateSlot(Slot instance);
     partial void DeleteSlot(Slot instance);
-    partial void InsertTask(Task instance);
-    partial void UpdateTask(Task instance);
-    partial void DeleteTask(Task instance);
     partial void InsertTaskAssignment(TaskAssignment instance);
     partial void UpdateTaskAssignment(TaskAssignment instance);
     partial void DeleteTaskAssignment(TaskAssignment instance);
     partial void InsertTeamMember(TeamMember instance);
     partial void UpdateTeamMember(TeamMember instance);
     partial void DeleteTeamMember(TeamMember instance);
-    partial void InsertProject(Project instance);
-    partial void UpdateProject(Project instance);
-    partial void DeleteProject(Project instance);
+    partial void InsertTask(Task instance);
+    partial void UpdateTask(Task instance);
+    partial void DeleteTask(Task instance);
     #endregion
 		
 		public GroupProjectDataContext() : 
@@ -105,6 +105,14 @@ namespace Uno.GroupProjectSupportTool.DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<Project> Projects
+		{
+			get
+			{
+				return this.GetTable<Project>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ProjectTeamAssignment> ProjectTeamAssignments
 		{
 			get
@@ -129,14 +137,6 @@ namespace Uno.GroupProjectSupportTool.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Task> Tasks
-		{
-			get
-			{
-				return this.GetTable<Task>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TaskAssignment> TaskAssignments
 		{
 			get
@@ -153,6 +153,14 @@ namespace Uno.GroupProjectSupportTool.DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<viewProject> viewProjects
+		{
+			get
+			{
+				return this.GetTable<viewProject>();
+			}
+		}
+		
 		public System.Data.Linq.Table<viewTeamManager> viewTeamManagers
 		{
 			get
@@ -161,12 +169,26 @@ namespace Uno.GroupProjectSupportTool.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Project> Projects
+		public System.Data.Linq.Table<Task> Tasks
 		{
 			get
 			{
-				return this.GetTable<Project>();
+				return this.GetTable<Task>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CreateMeetingSlots")]
+		public int CreateMeetingSlots()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAllActiveTasks")]
+		public ISingleResult<GetAllActiveTasksResult> GetAllActiveTasks()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetAllActiveTasksResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAllProjects")]
@@ -174,6 +196,48 @@ namespace Uno.GroupProjectSupportTool.DAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetAllProjectsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAllProjectTeamAssignment")]
+		public ISingleResult<GetAllProjectTeamAssignmentResult> GetAllProjectTeamAssignment()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetAllProjectTeamAssignmentResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAllRoles")]
+		public ISingleResult<GetAllRolesResult> GetAllRoles()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetAllRolesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAllTeamMember")]
+		public ISingleResult<GetAllTeamMemberResult> GetAllTeamMember()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetAllTeamMemberResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetMeetingSlots")]
+		public ISingleResult<GetMeetingSlotsResult> GetMeetingSlots()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetMeetingSlotsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPersonSlotAssignment")]
+		public ISingleResult<GetPersonSlotAssignmentResult> GetPersonSlotAssignment()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetPersonSlotAssignmentResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetTeamMemberSlotAssignment")]
+		public ISingleResult<GetTeamMemberSlotAssignmentResult> GetTeamMemberSlotAssignment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TeamMemberID", DbType="Int")] System.Nullable<int> teamMemberID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), teamMemberID);
+			return ((ISingleResult<GetTeamMemberSlotAssignmentResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -367,7 +431,7 @@ namespace Uno.GroupProjectSupportTool.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailabiltyID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailabiltyID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int AvailabiltyID
 		{
 			get
@@ -540,1445 +604,6 @@ namespace Uno.GroupProjectSupportTool.DAL
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProjectTeamAssignment")]
-	public partial class ProjectTeamAssignment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProjectTeamAssignmentID;
-		
-		private System.Nullable<int> _ProjectID;
-		
-		private System.Nullable<int> _TeamMemberID;
-		
-		private EntityRef<TeamMember> _TeamMember;
-		
-		private EntityRef<Project> _Project;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProjectTeamAssignmentIDChanging(int value);
-    partial void OnProjectTeamAssignmentIDChanged();
-    partial void OnProjectIDChanging(System.Nullable<int> value);
-    partial void OnProjectIDChanged();
-    partial void OnTeamMemberIDChanging(System.Nullable<int> value);
-    partial void OnTeamMemberIDChanged();
-    #endregion
-		
-		public ProjectTeamAssignment()
-		{
-			this._TeamMember = default(EntityRef<TeamMember>);
-			this._Project = default(EntityRef<Project>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTeamAssignmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProjectTeamAssignmentID
-		{
-			get
-			{
-				return this._ProjectTeamAssignmentID;
-			}
-			set
-			{
-				if ((this._ProjectTeamAssignmentID != value))
-				{
-					this.OnProjectTeamAssignmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectTeamAssignmentID = value;
-					this.SendPropertyChanged("ProjectTeamAssignmentID");
-					this.OnProjectTeamAssignmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
-		public System.Nullable<int> ProjectID
-		{
-			get
-			{
-				return this._ProjectID;
-			}
-			set
-			{
-				if ((this._ProjectID != value))
-				{
-					if (this._Project.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectID = value;
-					this.SendPropertyChanged("ProjectID");
-					this.OnProjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int")]
-		public System.Nullable<int> TeamMemberID
-		{
-			get
-			{
-				return this._TeamMemberID;
-			}
-			set
-			{
-				if ((this._TeamMemberID != value))
-				{
-					if (this._TeamMember.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamMemberIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamMemberID = value;
-					this.SendPropertyChanged("TeamMemberID");
-					this.OnTeamMemberIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_ProjectTeamAssignment", Storage="_TeamMember", ThisKey="TeamMemberID", OtherKey="TeamMemberID", IsForeignKey=true)]
-		public TeamMember TeamMember
-		{
-			get
-			{
-				return this._TeamMember.Entity;
-			}
-			set
-			{
-				TeamMember previousValue = this._TeamMember.Entity;
-				if (((previousValue != value) 
-							|| (this._TeamMember.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TeamMember.Entity = null;
-						previousValue.ProjectTeamAssignments.Remove(this);
-					}
-					this._TeamMember.Entity = value;
-					if ((value != null))
-					{
-						value.ProjectTeamAssignments.Add(this);
-						this._TeamMemberID = value.TeamMemberID;
-					}
-					else
-					{
-						this._TeamMemberID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TeamMember");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectTeamAssignment", Storage="_Project", ThisKey="ProjectID", OtherKey="ProjectID", IsForeignKey=true)]
-		public Project Project
-		{
-			get
-			{
-				return this._Project.Entity;
-			}
-			set
-			{
-				Project previousValue = this._Project.Entity;
-				if (((previousValue != value) 
-							|| (this._Project.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Project.Entity = null;
-						previousValue.ProjectTeamAssignments.Remove(this);
-					}
-					this._Project.Entity = value;
-					if ((value != null))
-					{
-						value.ProjectTeamAssignments.Add(this);
-						this._ProjectID = value.ProjectID;
-					}
-					else
-					{
-						this._ProjectID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Project");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Role")]
-	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _RoleID;
-		
-		private string _RoleName;
-		
-		private EntitySet<TeamMember> _TeamMembers;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRoleIDChanging(int value);
-    partial void OnRoleIDChanged();
-    partial void OnRoleNameChanging(string value);
-    partial void OnRoleNameChanged();
-    #endregion
-		
-		public Role()
-		{
-			this._TeamMembers = new EntitySet<TeamMember>(new Action<TeamMember>(this.attach_TeamMembers), new Action<TeamMember>(this.detach_TeamMembers));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int RoleID
-		{
-			get
-			{
-				return this._RoleID;
-			}
-			set
-			{
-				if ((this._RoleID != value))
-				{
-					this.OnRoleIDChanging(value);
-					this.SendPropertyChanging();
-					this._RoleID = value;
-					this.SendPropertyChanged("RoleID");
-					this.OnRoleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this.OnRoleNameChanging(value);
-					this.SendPropertyChanging();
-					this._RoleName = value;
-					this.SendPropertyChanged("RoleName");
-					this.OnRoleNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_TeamMember", Storage="_TeamMembers", ThisKey="RoleID", OtherKey="RoleID")]
-		public EntitySet<TeamMember> TeamMembers
-		{
-			get
-			{
-				return this._TeamMembers;
-			}
-			set
-			{
-				this._TeamMembers.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TeamMembers(TeamMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = this;
-		}
-		
-		private void detach_TeamMembers(TeamMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Role = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Slot")]
-	public partial class Slot : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _SlotID;
-		
-		private System.Nullable<System.DateTime> _SlotDate;
-		
-		private System.Nullable<int> _StartTime;
-		
-		private System.Nullable<int> _EndTime;
-		
-		private EntitySet<Meeting> _Meetings;
-		
-		private EntitySet<PersonSlotAssignment> _PersonSlotAssignments;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSlotIDChanging(int value);
-    partial void OnSlotIDChanged();
-    partial void OnSlotDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnSlotDateChanged();
-    partial void OnStartTimeChanging(System.Nullable<int> value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.Nullable<int> value);
-    partial void OnEndTimeChanged();
-    #endregion
-		
-		public Slot()
-		{
-			this._Meetings = new EntitySet<Meeting>(new Action<Meeting>(this.attach_Meetings), new Action<Meeting>(this.detach_Meetings));
-			this._PersonSlotAssignments = new EntitySet<PersonSlotAssignment>(new Action<PersonSlotAssignment>(this.attach_PersonSlotAssignments), new Action<PersonSlotAssignment>(this.detach_PersonSlotAssignments));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int SlotID
-		{
-			get
-			{
-				return this._SlotID;
-			}
-			set
-			{
-				if ((this._SlotID != value))
-				{
-					this.OnSlotIDChanging(value);
-					this.SendPropertyChanging();
-					this._SlotID = value;
-					this.SendPropertyChanged("SlotID");
-					this.OnSlotIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> SlotDate
-		{
-			get
-			{
-				return this._SlotDate;
-			}
-			set
-			{
-				if ((this._SlotDate != value))
-				{
-					this.OnSlotDateChanging(value);
-					this.SendPropertyChanging();
-					this._SlotDate = value;
-					this.SendPropertyChanged("SlotDate");
-					this.OnSlotDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Int")]
-		public System.Nullable<int> StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="Int")]
-		public System.Nullable<int> EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Slot_Meeting", Storage="_Meetings", ThisKey="SlotID", OtherKey="SlotID")]
-		public EntitySet<Meeting> Meetings
-		{
-			get
-			{
-				return this._Meetings;
-			}
-			set
-			{
-				this._Meetings.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Slot_PersonSlotAssignment", Storage="_PersonSlotAssignments", ThisKey="SlotID", OtherKey="SlotID")]
-		public EntitySet<PersonSlotAssignment> PersonSlotAssignments
-		{
-			get
-			{
-				return this._PersonSlotAssignments;
-			}
-			set
-			{
-				this._PersonSlotAssignments.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Meetings(Meeting entity)
-		{
-			this.SendPropertyChanging();
-			entity.Slot = this;
-		}
-		
-		private void detach_Meetings(Meeting entity)
-		{
-			this.SendPropertyChanging();
-			entity.Slot = null;
-		}
-		
-		private void attach_PersonSlotAssignments(PersonSlotAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Slot = this;
-		}
-		
-		private void detach_PersonSlotAssignments(PersonSlotAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Slot = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Task")]
-	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TaskID;
-		
-		private string _TaskName;
-		
-		private string _TaskNotes;
-		
-		private System.Nullable<int> _Iteration;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private System.Nullable<int> _CompletionPercent;
-		
-		private string _Status;
-		
-		private System.Nullable<bool> _IsRemoved;
-		
-		private System.Nullable<int> _ProjectID;
-		
-		private System.Nullable<bool> _IsMileStome;
-		
-		private EntitySet<TaskAssignment> _TaskAssignments;
-		
-		private EntityRef<Project> _Project;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTaskIDChanging(int value);
-    partial void OnTaskIDChanged();
-    partial void OnTaskNameChanging(string value);
-    partial void OnTaskNameChanged();
-    partial void OnTaskNotesChanging(string value);
-    partial void OnTaskNotesChanged();
-    partial void OnIterationChanging(System.Nullable<int> value);
-    partial void OnIterationChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnCompletionPercentChanging(System.Nullable<int> value);
-    partial void OnCompletionPercentChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnIsRemovedChanging(System.Nullable<bool> value);
-    partial void OnIsRemovedChanged();
-    partial void OnProjectIDChanging(System.Nullable<int> value);
-    partial void OnProjectIDChanged();
-    partial void OnIsMileStomeChanging(System.Nullable<bool> value);
-    partial void OnIsMileStomeChanged();
-    #endregion
-		
-		public Task()
-		{
-			this._TaskAssignments = new EntitySet<TaskAssignment>(new Action<TaskAssignment>(this.attach_TaskAssignments), new Action<TaskAssignment>(this.detach_TaskAssignments));
-			this._Project = default(EntityRef<Project>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TaskID
-		{
-			get
-			{
-				return this._TaskID;
-			}
-			set
-			{
-				if ((this._TaskID != value))
-				{
-					this.OnTaskIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskID = value;
-					this.SendPropertyChanged("TaskID");
-					this.OnTaskIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="VarChar(300)")]
-		public string TaskName
-		{
-			get
-			{
-				return this._TaskName;
-			}
-			set
-			{
-				if ((this._TaskName != value))
-				{
-					this.OnTaskNameChanging(value);
-					this.SendPropertyChanging();
-					this._TaskName = value;
-					this.SendPropertyChanged("TaskName");
-					this.OnTaskNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskNotes", DbType="VarChar(3000)")]
-		public string TaskNotes
-		{
-			get
-			{
-				return this._TaskNotes;
-			}
-			set
-			{
-				if ((this._TaskNotes != value))
-				{
-					this.OnTaskNotesChanging(value);
-					this.SendPropertyChanging();
-					this._TaskNotes = value;
-					this.SendPropertyChanged("TaskNotes");
-					this.OnTaskNotesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Iteration", DbType="Int")]
-		public System.Nullable<int> Iteration
-		{
-			get
-			{
-				return this._Iteration;
-			}
-			set
-			{
-				if ((this._Iteration != value))
-				{
-					this.OnIterationChanging(value);
-					this.SendPropertyChanging();
-					this._Iteration = value;
-					this.SendPropertyChanged("Iteration");
-					this.OnIterationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionPercent", DbType="Int")]
-		public System.Nullable<int> CompletionPercent
-		{
-			get
-			{
-				return this._CompletionPercent;
-			}
-			set
-			{
-				if ((this._CompletionPercent != value))
-				{
-					this.OnCompletionPercentChanging(value);
-					this.SendPropertyChanging();
-					this._CompletionPercent = value;
-					this.SendPropertyChanged("CompletionPercent");
-					this.OnCompletionPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(100)")]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRemoved", DbType="Bit")]
-		public System.Nullable<bool> IsRemoved
-		{
-			get
-			{
-				return this._IsRemoved;
-			}
-			set
-			{
-				if ((this._IsRemoved != value))
-				{
-					this.OnIsRemovedChanging(value);
-					this.SendPropertyChanging();
-					this._IsRemoved = value;
-					this.SendPropertyChanged("IsRemoved");
-					this.OnIsRemovedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
-		public System.Nullable<int> ProjectID
-		{
-			get
-			{
-				return this._ProjectID;
-			}
-			set
-			{
-				if ((this._ProjectID != value))
-				{
-					if (this._Project.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectID = value;
-					this.SendPropertyChanged("ProjectID");
-					this.OnProjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMileStome", DbType="Bit")]
-		public System.Nullable<bool> IsMileStome
-		{
-			get
-			{
-				return this._IsMileStome;
-			}
-			set
-			{
-				if ((this._IsMileStome != value))
-				{
-					this.OnIsMileStomeChanging(value);
-					this.SendPropertyChanging();
-					this._IsMileStome = value;
-					this.SendPropertyChanged("IsMileStome");
-					this.OnIsMileStomeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_TaskAssignment", Storage="_TaskAssignments", ThisKey="TaskID", OtherKey="TaskID")]
-		public EntitySet<TaskAssignment> TaskAssignments
-		{
-			get
-			{
-				return this._TaskAssignments;
-			}
-			set
-			{
-				this._TaskAssignments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task", Storage="_Project", ThisKey="ProjectID", OtherKey="ProjectID", IsForeignKey=true)]
-		public Project Project
-		{
-			get
-			{
-				return this._Project.Entity;
-			}
-			set
-			{
-				Project previousValue = this._Project.Entity;
-				if (((previousValue != value) 
-							|| (this._Project.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Project.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Project.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._ProjectID = value.ProjectID;
-					}
-					else
-					{
-						this._ProjectID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Project");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TaskAssignments(TaskAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = this;
-		}
-		
-		private void detach_TaskAssignments(TaskAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TaskAssignment")]
-	public partial class TaskAssignment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TaskAssignmentID;
-		
-		private int _TaskID;
-		
-		private int _TeamMemberID;
-		
-		private EntityRef<Task> _Task;
-		
-		private EntityRef<TeamMember> _TeamMember;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTaskAssignmentIDChanging(int value);
-    partial void OnTaskAssignmentIDChanged();
-    partial void OnTaskIDChanging(int value);
-    partial void OnTaskIDChanged();
-    partial void OnTeamMemberIDChanging(int value);
-    partial void OnTeamMemberIDChanged();
-    #endregion
-		
-		public TaskAssignment()
-		{
-			this._Task = default(EntityRef<Task>);
-			this._TeamMember = default(EntityRef<TeamMember>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskAssignmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TaskAssignmentID
-		{
-			get
-			{
-				return this._TaskAssignmentID;
-			}
-			set
-			{
-				if ((this._TaskAssignmentID != value))
-				{
-					this.OnTaskAssignmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskAssignmentID = value;
-					this.SendPropertyChanged("TaskAssignmentID");
-					this.OnTaskAssignmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="Int NOT NULL")]
-		public int TaskID
-		{
-			get
-			{
-				return this._TaskID;
-			}
-			set
-			{
-				if ((this._TaskID != value))
-				{
-					if (this._Task.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTaskIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskID = value;
-					this.SendPropertyChanged("TaskID");
-					this.OnTaskIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int NOT NULL")]
-		public int TeamMemberID
-		{
-			get
-			{
-				return this._TeamMemberID;
-			}
-			set
-			{
-				if ((this._TeamMemberID != value))
-				{
-					if (this._TeamMember.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamMemberIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamMemberID = value;
-					this.SendPropertyChanged("TeamMemberID");
-					this.OnTeamMemberIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_TaskAssignment", Storage="_Task", ThisKey="TaskID", OtherKey="TaskID", IsForeignKey=true)]
-		public Task Task
-		{
-			get
-			{
-				return this._Task.Entity;
-			}
-			set
-			{
-				Task previousValue = this._Task.Entity;
-				if (((previousValue != value) 
-							|| (this._Task.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Task.Entity = null;
-						previousValue.TaskAssignments.Remove(this);
-					}
-					this._Task.Entity = value;
-					if ((value != null))
-					{
-						value.TaskAssignments.Add(this);
-						this._TaskID = value.TaskID;
-					}
-					else
-					{
-						this._TaskID = default(int);
-					}
-					this.SendPropertyChanged("Task");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_TaskAssignment", Storage="_TeamMember", ThisKey="TeamMemberID", OtherKey="TeamMemberID", IsForeignKey=true)]
-		public TeamMember TeamMember
-		{
-			get
-			{
-				return this._TeamMember.Entity;
-			}
-			set
-			{
-				TeamMember previousValue = this._TeamMember.Entity;
-				if (((previousValue != value) 
-							|| (this._TeamMember.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TeamMember.Entity = null;
-						previousValue.TaskAssignments.Remove(this);
-					}
-					this._TeamMember.Entity = value;
-					if ((value != null))
-					{
-						value.TaskAssignments.Add(this);
-						this._TeamMemberID = value.TeamMemberID;
-					}
-					else
-					{
-						this._TeamMemberID = default(int);
-					}
-					this.SendPropertyChanged("TeamMember");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TeamMember")]
-	public partial class TeamMember : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TeamMemberID;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private string _Initials;
-		
-		private string _SSN;
-		
-		private System.Nullable<int> _RoleID;
-		
-		private EntitySet<PersonSlotAssignment> _PersonSlotAssignments;
-		
-		private EntitySet<ProjectTeamAssignment> _ProjectTeamAssignments;
-		
-		private EntitySet<TaskAssignment> _TaskAssignments;
-		
-		private EntitySet<Project> _Projects;
-		
-		private EntityRef<Role> _Role;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTeamMemberIDChanging(int value);
-    partial void OnTeamMemberIDChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnInitialsChanging(string value);
-    partial void OnInitialsChanged();
-    partial void OnSSNChanging(string value);
-    partial void OnSSNChanged();
-    partial void OnRoleIDChanging(System.Nullable<int> value);
-    partial void OnRoleIDChanged();
-    #endregion
-		
-		public TeamMember()
-		{
-			this._PersonSlotAssignments = new EntitySet<PersonSlotAssignment>(new Action<PersonSlotAssignment>(this.attach_PersonSlotAssignments), new Action<PersonSlotAssignment>(this.detach_PersonSlotAssignments));
-			this._ProjectTeamAssignments = new EntitySet<ProjectTeamAssignment>(new Action<ProjectTeamAssignment>(this.attach_ProjectTeamAssignments), new Action<ProjectTeamAssignment>(this.detach_ProjectTeamAssignments));
-			this._TaskAssignments = new EntitySet<TaskAssignment>(new Action<TaskAssignment>(this.attach_TaskAssignments), new Action<TaskAssignment>(this.detach_TaskAssignments));
-			this._Projects = new EntitySet<Project>(new Action<Project>(this.attach_Projects), new Action<Project>(this.detach_Projects));
-			this._Role = default(EntityRef<Role>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TeamMemberID
-		{
-			get
-			{
-				return this._TeamMemberID;
-			}
-			set
-			{
-				if ((this._TeamMemberID != value))
-				{
-					this.OnTeamMemberIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamMemberID = value;
-					this.SendPropertyChanged("TeamMemberID");
-					this.OnTeamMemberIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
-		public string Initials
-		{
-			get
-			{
-				return this._Initials;
-			}
-			set
-			{
-				if ((this._Initials != value))
-				{
-					this.OnInitialsChanging(value);
-					this.SendPropertyChanging();
-					this._Initials = value;
-					this.SendPropertyChanged("Initials");
-					this.OnInitialsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
-		public string SSN
-		{
-			get
-			{
-				return this._SSN;
-			}
-			set
-			{
-				if ((this._SSN != value))
-				{
-					this.OnSSNChanging(value);
-					this.SendPropertyChanging();
-					this._SSN = value;
-					this.SendPropertyChanged("SSN");
-					this.OnSSNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int")]
-		public System.Nullable<int> RoleID
-		{
-			get
-			{
-				return this._RoleID;
-			}
-			set
-			{
-				if ((this._RoleID != value))
-				{
-					if (this._Role.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRoleIDChanging(value);
-					this.SendPropertyChanging();
-					this._RoleID = value;
-					this.SendPropertyChanged("RoleID");
-					this.OnRoleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_PersonSlotAssignment", Storage="_PersonSlotAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
-		public EntitySet<PersonSlotAssignment> PersonSlotAssignments
-		{
-			get
-			{
-				return this._PersonSlotAssignments;
-			}
-			set
-			{
-				this._PersonSlotAssignments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_ProjectTeamAssignment", Storage="_ProjectTeamAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
-		public EntitySet<ProjectTeamAssignment> ProjectTeamAssignments
-		{
-			get
-			{
-				return this._ProjectTeamAssignments;
-			}
-			set
-			{
-				this._ProjectTeamAssignments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_TaskAssignment", Storage="_TaskAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
-		public EntitySet<TaskAssignment> TaskAssignments
-		{
-			get
-			{
-				return this._TaskAssignments;
-			}
-			set
-			{
-				this._TaskAssignments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_Project", Storage="_Projects", ThisKey="TeamMemberID", OtherKey="ManagerID")]
-		public EntitySet<Project> Projects
-		{
-			get
-			{
-				return this._Projects;
-			}
-			set
-			{
-				this._Projects.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_TeamMember", Storage="_Role", ThisKey="RoleID", OtherKey="RoleID", IsForeignKey=true)]
-		public Role Role
-		{
-			get
-			{
-				return this._Role.Entity;
-			}
-			set
-			{
-				Role previousValue = this._Role.Entity;
-				if (((previousValue != value) 
-							|| (this._Role.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Role.Entity = null;
-						previousValue.TeamMembers.Remove(this);
-					}
-					this._Role.Entity = value;
-					if ((value != null))
-					{
-						value.TeamMembers.Add(this);
-						this._RoleID = value.RoleID;
-					}
-					else
-					{
-						this._RoleID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Role");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_PersonSlotAssignments(PersonSlotAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = this;
-		}
-		
-		private void detach_PersonSlotAssignments(PersonSlotAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = null;
-		}
-		
-		private void attach_ProjectTeamAssignments(ProjectTeamAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = this;
-		}
-		
-		private void detach_ProjectTeamAssignments(ProjectTeamAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = null;
-		}
-		
-		private void attach_TaskAssignments(TaskAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = this;
-		}
-		
-		private void detach_TaskAssignments(TaskAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = null;
-		}
-		
-		private void attach_Projects(Project entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = this;
-		}
-		
-		private void detach_Projects(Project entity)
-		{
-			this.SendPropertyChanging();
-			entity.TeamMember = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewTeamManager")]
-	public partial class viewTeamManager
-	{
-		
-		private int _TeamMemberID;
-		
-		private string _Name;
-		
-		public viewTeamManager()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int TeamMemberID
-		{
-			get
-			{
-				return this._TeamMemberID;
-			}
-			set
-			{
-				if ((this._TeamMemberID != value))
-				{
-					this._TeamMemberID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(207)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
 			}
 		}
 	}
@@ -2262,6 +887,1714 @@ namespace Uno.GroupProjectSupportTool.DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProjectTeamAssignment")]
+	public partial class ProjectTeamAssignment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProjectTeamAssignmentID;
+		
+		private System.Nullable<int> _ProjectID;
+		
+		private System.Nullable<int> _TeamMemberID;
+		
+		private EntityRef<Project> _Project;
+		
+		private EntityRef<TeamMember> _TeamMember;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProjectTeamAssignmentIDChanging(int value);
+    partial void OnProjectTeamAssignmentIDChanged();
+    partial void OnProjectIDChanging(System.Nullable<int> value);
+    partial void OnProjectIDChanged();
+    partial void OnTeamMemberIDChanging(System.Nullable<int> value);
+    partial void OnTeamMemberIDChanged();
+    #endregion
+		
+		public ProjectTeamAssignment()
+		{
+			this._Project = default(EntityRef<Project>);
+			this._TeamMember = default(EntityRef<TeamMember>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTeamAssignmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProjectTeamAssignmentID
+		{
+			get
+			{
+				return this._ProjectTeamAssignmentID;
+			}
+			set
+			{
+				if ((this._ProjectTeamAssignmentID != value))
+				{
+					this.OnProjectTeamAssignmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectTeamAssignmentID = value;
+					this.SendPropertyChanged("ProjectTeamAssignmentID");
+					this.OnProjectTeamAssignmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
+		public System.Nullable<int> ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					if (this._Project.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectID = value;
+					this.SendPropertyChanged("ProjectID");
+					this.OnProjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int")]
+		public System.Nullable<int> TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					if (this._TeamMember.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamMemberIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamMemberID = value;
+					this.SendPropertyChanged("TeamMemberID");
+					this.OnTeamMemberIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectTeamAssignment", Storage="_Project", ThisKey="ProjectID", OtherKey="ProjectID", IsForeignKey=true)]
+		public Project Project
+		{
+			get
+			{
+				return this._Project.Entity;
+			}
+			set
+			{
+				Project previousValue = this._Project.Entity;
+				if (((previousValue != value) 
+							|| (this._Project.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Project.Entity = null;
+						previousValue.ProjectTeamAssignments.Remove(this);
+					}
+					this._Project.Entity = value;
+					if ((value != null))
+					{
+						value.ProjectTeamAssignments.Add(this);
+						this._ProjectID = value.ProjectID;
+					}
+					else
+					{
+						this._ProjectID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Project");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_ProjectTeamAssignment", Storage="_TeamMember", ThisKey="TeamMemberID", OtherKey="TeamMemberID", IsForeignKey=true)]
+		public TeamMember TeamMember
+		{
+			get
+			{
+				return this._TeamMember.Entity;
+			}
+			set
+			{
+				TeamMember previousValue = this._TeamMember.Entity;
+				if (((previousValue != value) 
+							|| (this._TeamMember.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TeamMember.Entity = null;
+						previousValue.ProjectTeamAssignments.Remove(this);
+					}
+					this._TeamMember.Entity = value;
+					if ((value != null))
+					{
+						value.ProjectTeamAssignments.Add(this);
+						this._TeamMemberID = value.TeamMemberID;
+					}
+					else
+					{
+						this._TeamMemberID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TeamMember");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Role")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RoleID;
+		
+		private string _RoleName;
+		
+		private EntitySet<TeamMember> _TeamMembers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoleIDChanging(int value);
+    partial void OnRoleIDChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    #endregion
+		
+		public Role()
+		{
+			this._TeamMembers = new EntitySet<TeamMember>(new Action<TeamMember>(this.attach_TeamMembers), new Action<TeamMember>(this.detach_TeamMembers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this.OnRoleIDChanging(value);
+					this.SendPropertyChanging();
+					this._RoleID = value;
+					this.SendPropertyChanged("RoleID");
+					this.OnRoleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_TeamMember", Storage="_TeamMembers", ThisKey="RoleID", OtherKey="RoleID")]
+		public EntitySet<TeamMember> TeamMembers
+		{
+			get
+			{
+				return this._TeamMembers;
+			}
+			set
+			{
+				this._TeamMembers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TeamMembers(TeamMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = this;
+		}
+		
+		private void detach_TeamMembers(TeamMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Slot")]
+	public partial class Slot : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SlotID;
+		
+		private System.Nullable<System.DateTime> _SlotDate;
+		
+		private System.Nullable<System.TimeSpan> _StartTime;
+		
+		private System.Nullable<System.TimeSpan> _EndTime;
+		
+		private EntitySet<Meeting> _Meetings;
+		
+		private EntitySet<PersonSlotAssignment> _PersonSlotAssignments;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSlotIDChanging(int value);
+    partial void OnSlotIDChanged();
+    partial void OnSlotDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnSlotDateChanged();
+    partial void OnStartTimeChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnEndTimeChanged();
+    #endregion
+		
+		public Slot()
+		{
+			this._Meetings = new EntitySet<Meeting>(new Action<Meeting>(this.attach_Meetings), new Action<Meeting>(this.detach_Meetings));
+			this._PersonSlotAssignments = new EntitySet<PersonSlotAssignment>(new Action<PersonSlotAssignment>(this.attach_PersonSlotAssignments), new Action<PersonSlotAssignment>(this.detach_PersonSlotAssignments));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SlotID
+		{
+			get
+			{
+				return this._SlotID;
+			}
+			set
+			{
+				if ((this._SlotID != value))
+				{
+					this.OnSlotIDChanging(value);
+					this.SendPropertyChanging();
+					this._SlotID = value;
+					this.SendPropertyChanged("SlotID");
+					this.OnSlotIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> SlotDate
+		{
+			get
+			{
+				return this._SlotDate;
+			}
+			set
+			{
+				if ((this._SlotDate != value))
+				{
+					this.OnSlotDateChanging(value);
+					this.SendPropertyChanging();
+					this._SlotDate = value;
+					this.SendPropertyChanged("SlotDate");
+					this.OnSlotDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Slot_Meeting", Storage="_Meetings", ThisKey="SlotID", OtherKey="SlotID")]
+		public EntitySet<Meeting> Meetings
+		{
+			get
+			{
+				return this._Meetings;
+			}
+			set
+			{
+				this._Meetings.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Slot_PersonSlotAssignment", Storage="_PersonSlotAssignments", ThisKey="SlotID", OtherKey="SlotID")]
+		public EntitySet<PersonSlotAssignment> PersonSlotAssignments
+		{
+			get
+			{
+				return this._PersonSlotAssignments;
+			}
+			set
+			{
+				this._PersonSlotAssignments.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Meetings(Meeting entity)
+		{
+			this.SendPropertyChanging();
+			entity.Slot = this;
+		}
+		
+		private void detach_Meetings(Meeting entity)
+		{
+			this.SendPropertyChanging();
+			entity.Slot = null;
+		}
+		
+		private void attach_PersonSlotAssignments(PersonSlotAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Slot = this;
+		}
+		
+		private void detach_PersonSlotAssignments(PersonSlotAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Slot = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TaskAssignment")]
+	public partial class TaskAssignment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskAssignmentID;
+		
+		private int _TaskID;
+		
+		private int _TeamMemberID;
+		
+		private EntityRef<TeamMember> _TeamMember;
+		
+		private EntityRef<Task> _Task;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskAssignmentIDChanging(int value);
+    partial void OnTaskAssignmentIDChanged();
+    partial void OnTaskIDChanging(int value);
+    partial void OnTaskIDChanged();
+    partial void OnTeamMemberIDChanging(int value);
+    partial void OnTeamMemberIDChanged();
+    #endregion
+		
+		public TaskAssignment()
+		{
+			this._TeamMember = default(EntityRef<TeamMember>);
+			this._Task = default(EntityRef<Task>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskAssignmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TaskAssignmentID
+		{
+			get
+			{
+				return this._TaskAssignmentID;
+			}
+			set
+			{
+				if ((this._TaskAssignmentID != value))
+				{
+					this.OnTaskAssignmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskAssignmentID = value;
+					this.SendPropertyChanged("TaskAssignmentID");
+					this.OnTaskAssignmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="Int NOT NULL")]
+		public int TaskID
+		{
+			get
+			{
+				return this._TaskID;
+			}
+			set
+			{
+				if ((this._TaskID != value))
+				{
+					if (this._Task.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTaskIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int NOT NULL")]
+		public int TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					if (this._TeamMember.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamMemberIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamMemberID = value;
+					this.SendPropertyChanged("TeamMemberID");
+					this.OnTeamMemberIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_TaskAssignment", Storage="_TeamMember", ThisKey="TeamMemberID", OtherKey="TeamMemberID", IsForeignKey=true)]
+		public TeamMember TeamMember
+		{
+			get
+			{
+				return this._TeamMember.Entity;
+			}
+			set
+			{
+				TeamMember previousValue = this._TeamMember.Entity;
+				if (((previousValue != value) 
+							|| (this._TeamMember.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TeamMember.Entity = null;
+						previousValue.TaskAssignments.Remove(this);
+					}
+					this._TeamMember.Entity = value;
+					if ((value != null))
+					{
+						value.TaskAssignments.Add(this);
+						this._TeamMemberID = value.TeamMemberID;
+					}
+					else
+					{
+						this._TeamMemberID = default(int);
+					}
+					this.SendPropertyChanged("TeamMember");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_TaskAssignment", Storage="_Task", ThisKey="TaskID", OtherKey="TaskID", IsForeignKey=true)]
+		public Task Task
+		{
+			get
+			{
+				return this._Task.Entity;
+			}
+			set
+			{
+				Task previousValue = this._Task.Entity;
+				if (((previousValue != value) 
+							|| (this._Task.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Task.Entity = null;
+						previousValue.TaskAssignments.Remove(this);
+					}
+					this._Task.Entity = value;
+					if ((value != null))
+					{
+						value.TaskAssignments.Add(this);
+						this._TaskID = value.TaskID;
+					}
+					else
+					{
+						this._TaskID = default(int);
+					}
+					this.SendPropertyChanged("Task");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TeamMember")]
+	public partial class TeamMember : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TeamMemberID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Initials;
+		
+		private string _SSN;
+		
+		private System.Nullable<int> _RoleID;
+		
+		private EntitySet<PersonSlotAssignment> _PersonSlotAssignments;
+		
+		private EntitySet<Project> _Projects;
+		
+		private EntitySet<ProjectTeamAssignment> _ProjectTeamAssignments;
+		
+		private EntitySet<TaskAssignment> _TaskAssignments;
+		
+		private EntityRef<Role> _Role;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTeamMemberIDChanging(int value);
+    partial void OnTeamMemberIDChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnInitialsChanging(string value);
+    partial void OnInitialsChanged();
+    partial void OnSSNChanging(string value);
+    partial void OnSSNChanged();
+    partial void OnRoleIDChanging(System.Nullable<int> value);
+    partial void OnRoleIDChanged();
+    #endregion
+		
+		public TeamMember()
+		{
+			this._PersonSlotAssignments = new EntitySet<PersonSlotAssignment>(new Action<PersonSlotAssignment>(this.attach_PersonSlotAssignments), new Action<PersonSlotAssignment>(this.detach_PersonSlotAssignments));
+			this._Projects = new EntitySet<Project>(new Action<Project>(this.attach_Projects), new Action<Project>(this.detach_Projects));
+			this._ProjectTeamAssignments = new EntitySet<ProjectTeamAssignment>(new Action<ProjectTeamAssignment>(this.attach_ProjectTeamAssignments), new Action<ProjectTeamAssignment>(this.detach_ProjectTeamAssignments));
+			this._TaskAssignments = new EntitySet<TaskAssignment>(new Action<TaskAssignment>(this.attach_TaskAssignments), new Action<TaskAssignment>(this.detach_TaskAssignments));
+			this._Role = default(EntityRef<Role>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this.OnTeamMemberIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamMemberID = value;
+					this.SendPropertyChanged("TeamMemberID");
+					this.OnTeamMemberIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Initials
+		{
+			get
+			{
+				return this._Initials;
+			}
+			set
+			{
+				if ((this._Initials != value))
+				{
+					this.OnInitialsChanging(value);
+					this.SendPropertyChanging();
+					this._Initials = value;
+					this.SendPropertyChanged("Initials");
+					this.OnInitialsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
+		public string SSN
+		{
+			get
+			{
+				return this._SSN;
+			}
+			set
+			{
+				if ((this._SSN != value))
+				{
+					this.OnSSNChanging(value);
+					this.SendPropertyChanging();
+					this._SSN = value;
+					this.SendPropertyChanged("SSN");
+					this.OnSSNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int")]
+		public System.Nullable<int> RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					if (this._Role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRoleIDChanging(value);
+					this.SendPropertyChanging();
+					this._RoleID = value;
+					this.SendPropertyChanged("RoleID");
+					this.OnRoleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_PersonSlotAssignment", Storage="_PersonSlotAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
+		public EntitySet<PersonSlotAssignment> PersonSlotAssignments
+		{
+			get
+			{
+				return this._PersonSlotAssignments;
+			}
+			set
+			{
+				this._PersonSlotAssignments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_Project", Storage="_Projects", ThisKey="TeamMemberID", OtherKey="ManagerID")]
+		public EntitySet<Project> Projects
+		{
+			get
+			{
+				return this._Projects;
+			}
+			set
+			{
+				this._Projects.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_ProjectTeamAssignment", Storage="_ProjectTeamAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
+		public EntitySet<ProjectTeamAssignment> ProjectTeamAssignments
+		{
+			get
+			{
+				return this._ProjectTeamAssignments;
+			}
+			set
+			{
+				this._ProjectTeamAssignments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TeamMember_TaskAssignment", Storage="_TaskAssignments", ThisKey="TeamMemberID", OtherKey="TeamMemberID")]
+		public EntitySet<TaskAssignment> TaskAssignments
+		{
+			get
+			{
+				return this._TaskAssignments;
+			}
+			set
+			{
+				this._TaskAssignments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_TeamMember", Storage="_Role", ThisKey="RoleID", OtherKey="RoleID", IsForeignKey=true)]
+		public Role Role
+		{
+			get
+			{
+				return this._Role.Entity;
+			}
+			set
+			{
+				Role previousValue = this._Role.Entity;
+				if (((previousValue != value) 
+							|| (this._Role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Role.Entity = null;
+						previousValue.TeamMembers.Remove(this);
+					}
+					this._Role.Entity = value;
+					if ((value != null))
+					{
+						value.TeamMembers.Add(this);
+						this._RoleID = value.RoleID;
+					}
+					else
+					{
+						this._RoleID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Role");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PersonSlotAssignments(PersonSlotAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = this;
+		}
+		
+		private void detach_PersonSlotAssignments(PersonSlotAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = null;
+		}
+		
+		private void attach_Projects(Project entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = this;
+		}
+		
+		private void detach_Projects(Project entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = null;
+		}
+		
+		private void attach_ProjectTeamAssignments(ProjectTeamAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = this;
+		}
+		
+		private void detach_ProjectTeamAssignments(ProjectTeamAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = null;
+		}
+		
+		private void attach_TaskAssignments(TaskAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = this;
+		}
+		
+		private void detach_TaskAssignments(TaskAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.TeamMember = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewProject")]
+	public partial class viewProject
+	{
+		
+		private int _ProjectID;
+		
+		private string _ProjectName;
+		
+		public viewProject()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					this._ProjectID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(1000)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewTeamManager")]
+	public partial class viewTeamManager
+	{
+		
+		private int _TeamMemberID;
+		
+		private string _Name;
+		
+		public viewTeamManager()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this._TeamMemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(207)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Task")]
+	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskID;
+		
+		private string _TaskName;
+		
+		private string _TaskNotes;
+		
+		private System.Nullable<int> _Iteration;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _CompletionPercent;
+		
+		private string _Status;
+		
+		private System.Nullable<bool> _IsRemoved;
+		
+		private System.Nullable<int> _ProjectID;
+		
+		private System.Nullable<bool> _IsMileStone;
+		
+		private EntitySet<TaskAssignment> _TaskAssignments;
+		
+		private EntityRef<Project> _Project;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskIDChanging(int value);
+    partial void OnTaskIDChanged();
+    partial void OnTaskNameChanging(string value);
+    partial void OnTaskNameChanged();
+    partial void OnTaskNotesChanging(string value);
+    partial void OnTaskNotesChanged();
+    partial void OnIterationChanging(System.Nullable<int> value);
+    partial void OnIterationChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnCompletionPercentChanging(System.Nullable<int> value);
+    partial void OnCompletionPercentChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnIsRemovedChanging(System.Nullable<bool> value);
+    partial void OnIsRemovedChanged();
+    partial void OnProjectIDChanging(System.Nullable<int> value);
+    partial void OnProjectIDChanged();
+    partial void OnIsMileStoneChanging(System.Nullable<bool> value);
+    partial void OnIsMileStoneChanged();
+    #endregion
+		
+		public Task()
+		{
+			this._TaskAssignments = new EntitySet<TaskAssignment>(new Action<TaskAssignment>(this.attach_TaskAssignments), new Action<TaskAssignment>(this.detach_TaskAssignments));
+			this._Project = default(EntityRef<Project>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TaskID
+		{
+			get
+			{
+				return this._TaskID;
+			}
+			set
+			{
+				if ((this._TaskID != value))
+				{
+					this.OnTaskIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="VarChar(300)")]
+		public string TaskName
+		{
+			get
+			{
+				return this._TaskName;
+			}
+			set
+			{
+				if ((this._TaskName != value))
+				{
+					this.OnTaskNameChanging(value);
+					this.SendPropertyChanging();
+					this._TaskName = value;
+					this.SendPropertyChanged("TaskName");
+					this.OnTaskNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskNotes", DbType="VarChar(3000)")]
+		public string TaskNotes
+		{
+			get
+			{
+				return this._TaskNotes;
+			}
+			set
+			{
+				if ((this._TaskNotes != value))
+				{
+					this.OnTaskNotesChanging(value);
+					this.SendPropertyChanging();
+					this._TaskNotes = value;
+					this.SendPropertyChanged("TaskNotes");
+					this.OnTaskNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Iteration", DbType="Int")]
+		public System.Nullable<int> Iteration
+		{
+			get
+			{
+				return this._Iteration;
+			}
+			set
+			{
+				if ((this._Iteration != value))
+				{
+					this.OnIterationChanging(value);
+					this.SendPropertyChanging();
+					this._Iteration = value;
+					this.SendPropertyChanged("Iteration");
+					this.OnIterationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionPercent", DbType="Int")]
+		public System.Nullable<int> CompletionPercent
+		{
+			get
+			{
+				return this._CompletionPercent;
+			}
+			set
+			{
+				if ((this._CompletionPercent != value))
+				{
+					this.OnCompletionPercentChanging(value);
+					this.SendPropertyChanging();
+					this._CompletionPercent = value;
+					this.SendPropertyChanged("CompletionPercent");
+					this.OnCompletionPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(100)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRemoved", DbType="Bit")]
+		public System.Nullable<bool> IsRemoved
+		{
+			get
+			{
+				return this._IsRemoved;
+			}
+			set
+			{
+				if ((this._IsRemoved != value))
+				{
+					this.OnIsRemovedChanging(value);
+					this.SendPropertyChanging();
+					this._IsRemoved = value;
+					this.SendPropertyChanged("IsRemoved");
+					this.OnIsRemovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
+		public System.Nullable<int> ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					if (this._Project.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectID = value;
+					this.SendPropertyChanged("ProjectID");
+					this.OnProjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMileStone", DbType="Bit")]
+		public System.Nullable<bool> IsMileStone
+		{
+			get
+			{
+				return this._IsMileStone;
+			}
+			set
+			{
+				if ((this._IsMileStone != value))
+				{
+					this.OnIsMileStoneChanging(value);
+					this.SendPropertyChanging();
+					this._IsMileStone = value;
+					this.SendPropertyChanged("IsMileStone");
+					this.OnIsMileStoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_TaskAssignment", Storage="_TaskAssignments", ThisKey="TaskID", OtherKey="TaskID")]
+		public EntitySet<TaskAssignment> TaskAssignments
+		{
+			get
+			{
+				return this._TaskAssignments;
+			}
+			set
+			{
+				this._TaskAssignments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task", Storage="_Project", ThisKey="ProjectID", OtherKey="ProjectID", IsForeignKey=true)]
+		public Project Project
+		{
+			get
+			{
+				return this._Project.Entity;
+			}
+			set
+			{
+				Project previousValue = this._Project.Entity;
+				if (((previousValue != value) 
+							|| (this._Project.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Project.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Project.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._ProjectID = value.ProjectID;
+					}
+					else
+					{
+						this._ProjectID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Project");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TaskAssignments(TaskAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = this;
+		}
+		
+		private void detach_TaskAssignments(TaskAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = null;
+		}
+	}
+	
+	public partial class GetAllActiveTasksResult
+	{
+		
+		private int _TaskID;
+		
+		private string _TaskName;
+		
+		private string _TaskNotes;
+		
+		private System.Nullable<int> _Iteration;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _CompletionPercent;
+		
+		private string _Status;
+		
+		private System.Nullable<bool> _IsRemoved;
+		
+		private System.Nullable<int> _ProjectID;
+		
+		private string _ProjectName;
+		
+		private System.Nullable<bool> _IsMileStone;
+		
+		public GetAllActiveTasksResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", DbType="Int NOT NULL")]
+		public int TaskID
+		{
+			get
+			{
+				return this._TaskID;
+			}
+			set
+			{
+				if ((this._TaskID != value))
+				{
+					this._TaskID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="VarChar(300)")]
+		public string TaskName
+		{
+			get
+			{
+				return this._TaskName;
+			}
+			set
+			{
+				if ((this._TaskName != value))
+				{
+					this._TaskName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskNotes", DbType="VarChar(3000)")]
+		public string TaskNotes
+		{
+			get
+			{
+				return this._TaskNotes;
+			}
+			set
+			{
+				if ((this._TaskNotes != value))
+				{
+					this._TaskNotes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Iteration", DbType="Int")]
+		public System.Nullable<int> Iteration
+		{
+			get
+			{
+				return this._Iteration;
+			}
+			set
+			{
+				if ((this._Iteration != value))
+				{
+					this._Iteration = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionPercent", DbType="Int")]
+		public System.Nullable<int> CompletionPercent
+		{
+			get
+			{
+				return this._CompletionPercent;
+			}
+			set
+			{
+				if ((this._CompletionPercent != value))
+				{
+					this._CompletionPercent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(100)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRemoved", DbType="Bit")]
+		public System.Nullable<bool> IsRemoved
+		{
+			get
+			{
+				return this._IsRemoved;
+			}
+			set
+			{
+				if ((this._IsRemoved != value))
+				{
+					this._IsRemoved = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
+		public System.Nullable<int> ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					this._ProjectID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(1000)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsMileStone", DbType="Bit")]
+		public System.Nullable<bool> IsMileStone
+		{
+			get
+			{
+				return this._IsMileStone;
+			}
+			set
+			{
+				if ((this._IsMileStone != value))
+				{
+					this._IsMileStone = value;
+				}
+			}
+		}
+	}
+	
 	public partial class GetAllProjectsResult
 	{
 		
@@ -2409,6 +2742,954 @@ namespace Uno.GroupProjectSupportTool.DAL
 				if ((this._Initials != value))
 				{
 					this._Initials = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetAllProjectTeamAssignmentResult
+	{
+		
+		private int _ProjectTeamAssignmentID;
+		
+		private System.Nullable<int> _ProjectID;
+		
+		private string _ProjectName;
+		
+		private System.Nullable<System.DateTime> _ProjectStartDate;
+		
+		private System.Nullable<System.DateTime> _ProjectEndDate;
+		
+		private System.Nullable<int> _TeamMemberID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Initials;
+		
+		private string _SSN;
+		
+		private int _TeamMemberID1;
+		
+		private System.Nullable<int> _RoleID;
+		
+		private string _RoleName;
+		
+		public GetAllProjectTeamAssignmentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTeamAssignmentID", DbType="Int NOT NULL")]
+		public int ProjectTeamAssignmentID
+		{
+			get
+			{
+				return this._ProjectTeamAssignmentID;
+			}
+			set
+			{
+				if ((this._ProjectTeamAssignmentID != value))
+				{
+					this._ProjectTeamAssignmentID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int")]
+		public System.Nullable<int> ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					this._ProjectID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(1000)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProjectStartDate
+		{
+			get
+			{
+				return this._ProjectStartDate;
+			}
+			set
+			{
+				if ((this._ProjectStartDate != value))
+				{
+					this._ProjectStartDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectEndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProjectEndDate
+		{
+			get
+			{
+				return this._ProjectEndDate;
+			}
+			set
+			{
+				if ((this._ProjectEndDate != value))
+				{
+					this._ProjectEndDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int")]
+		public System.Nullable<int> TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this._TeamMemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Initials
+		{
+			get
+			{
+				return this._Initials;
+			}
+			set
+			{
+				if ((this._Initials != value))
+				{
+					this._Initials = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
+		public string SSN
+		{
+			get
+			{
+				return this._SSN;
+			}
+			set
+			{
+				if ((this._SSN != value))
+				{
+					this._SSN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID1", DbType="Int NOT NULL")]
+		public int TeamMemberID1
+		{
+			get
+			{
+				return this._TeamMemberID1;
+			}
+			set
+			{
+				if ((this._TeamMemberID1 != value))
+				{
+					this._TeamMemberID1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int")]
+		public System.Nullable<int> RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this._RoleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetAllRolesResult
+	{
+		
+		private int _RoleID;
+		
+		private string _RoleName;
+		
+		public GetAllRolesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int NOT NULL")]
+		public int RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this._RoleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetAllTeamMemberResult
+	{
+		
+		private int _TeamMemberID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Initials;
+		
+		private string _SSN;
+		
+		private System.Nullable<int> _RoleID;
+		
+		private string _RoleName;
+		
+		public GetAllTeamMemberResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int NOT NULL")]
+		public int TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this._TeamMemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Initials
+		{
+			get
+			{
+				return this._Initials;
+			}
+			set
+			{
+				if ((this._Initials != value))
+				{
+					this._Initials = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
+		public string SSN
+		{
+			get
+			{
+				return this._SSN;
+			}
+			set
+			{
+				if ((this._SSN != value))
+				{
+					this._SSN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int")]
+		public System.Nullable<int> RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this._RoleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetMeetingSlotsResult
+	{
+		
+		private int _SlotID;
+		
+		private System.Nullable<System.DateTime> _SlotDate;
+		
+		private System.Nullable<System.TimeSpan> _StartTime;
+		
+		private System.Nullable<System.TimeSpan> _EndTime;
+		
+		public GetMeetingSlotsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotID", DbType="Int NOT NULL")]
+		public int SlotID
+		{
+			get
+			{
+				return this._SlotID;
+			}
+			set
+			{
+				if ((this._SlotID != value))
+				{
+					this._SlotID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> SlotDate
+		{
+			get
+			{
+				return this._SlotDate;
+			}
+			set
+			{
+				if ((this._SlotDate != value))
+				{
+					this._SlotDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetPersonSlotAssignmentResult
+	{
+		
+		private int _AvailabiltyID;
+		
+		private System.Nullable<int> _TeamMemberID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Initials;
+		
+		private string _SSN;
+		
+		private string _RoleName;
+		
+		private System.Nullable<int> _SlotID;
+		
+		private System.Nullable<System.DateTime> _SlotDate;
+		
+		private System.Nullable<System.TimeSpan> _StartTime;
+		
+		private System.Nullable<System.TimeSpan> _EndTime;
+		
+		private System.Nullable<bool> _IsDeleted;
+		
+		public GetPersonSlotAssignmentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailabiltyID", DbType="Int NOT NULL")]
+		public int AvailabiltyID
+		{
+			get
+			{
+				return this._AvailabiltyID;
+			}
+			set
+			{
+				if ((this._AvailabiltyID != value))
+				{
+					this._AvailabiltyID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int")]
+		public System.Nullable<int> TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this._TeamMemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Initials
+		{
+			get
+			{
+				return this._Initials;
+			}
+			set
+			{
+				if ((this._Initials != value))
+				{
+					this._Initials = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
+		public string SSN
+		{
+			get
+			{
+				return this._SSN;
+			}
+			set
+			{
+				if ((this._SSN != value))
+				{
+					this._SSN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotID", DbType="Int")]
+		public System.Nullable<int> SlotID
+		{
+			get
+			{
+				return this._SlotID;
+			}
+			set
+			{
+				if ((this._SlotID != value))
+				{
+					this._SlotID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> SlotDate
+		{
+			get
+			{
+				return this._SlotDate;
+			}
+			set
+			{
+				if ((this._SlotDate != value))
+				{
+					this._SlotDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this._IsDeleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetTeamMemberSlotAssignmentResult
+	{
+		
+		private int _AvailabiltyID;
+		
+		private System.Nullable<int> _TeamMemberID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Initials;
+		
+		private string _SSN;
+		
+		private string _RoleName;
+		
+		private System.Nullable<int> _SlotID;
+		
+		private System.Nullable<System.DateTime> _SlotDate;
+		
+		private System.Nullable<System.TimeSpan> _StartTime;
+		
+		private System.Nullable<System.TimeSpan> _EndTime;
+		
+		private System.Nullable<bool> _IsDeleted;
+		
+		public GetTeamMemberSlotAssignmentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailabiltyID", DbType="Int NOT NULL")]
+		public int AvailabiltyID
+		{
+			get
+			{
+				return this._AvailabiltyID;
+			}
+			set
+			{
+				if ((this._AvailabiltyID != value))
+				{
+					this._AvailabiltyID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamMemberID", DbType="Int")]
+		public System.Nullable<int> TeamMemberID
+		{
+			get
+			{
+				return this._TeamMemberID;
+			}
+			set
+			{
+				if ((this._TeamMemberID != value))
+				{
+					this._TeamMemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Initials", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Initials
+		{
+			get
+			{
+				return this._Initials;
+			}
+			set
+			{
+				if ((this._Initials != value))
+				{
+					this._Initials = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSN", DbType="VarChar(20)")]
+		public string SSN
+		{
+			get
+			{
+				return this._SSN;
+			}
+			set
+			{
+				if ((this._SSN != value))
+				{
+					this._SSN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(100)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotID", DbType="Int")]
+		public System.Nullable<int> SlotID
+		{
+			get
+			{
+				return this._SlotID;
+			}
+			set
+			{
+				if ((this._SlotID != value))
+				{
+					this._SlotID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SlotDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> SlotDate
+		{
+			get
+			{
+				return this._SlotDate;
+			}
+			set
+			{
+				if ((this._SlotDate != value))
+				{
+					this._SlotDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this._IsDeleted = value;
 				}
 			}
 		}

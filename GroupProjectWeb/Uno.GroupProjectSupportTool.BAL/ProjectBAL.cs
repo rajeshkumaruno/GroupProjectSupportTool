@@ -74,7 +74,7 @@ namespace Uno.GroupProjectSupportTool.BAL
                 if(updProjectInput.projectStartDate.HasValue)
                     result.ProjectStartDate = updProjectInput.projectStartDate;
 
-                if (updProjectInput.projectStartDate.HasValue)
+                if (updProjectInput.projectEndDate.HasValue)
                     result.ProjectEndDate = updProjectInput.projectEndDate;
 
 
@@ -135,6 +135,33 @@ namespace Uno.GroupProjectSupportTool.BAL
                 return null;
             }
         }
+
+
+        public List<GetAllProjectTeamAssignmentResult> GetAllProjectTeamAssignment()
+        {
+            try
+            {
+
+                List<GetAllProjectTeamAssignmentResult> listProjectTeamAssignment = new List<GetAllProjectTeamAssignmentResult>();
+
+                GroupProjectDataContext context = new GroupProjectDataContext();
+
+                listProjectTeamAssignment =
+                   (from prj in context.GetAllProjectTeamAssignment()
+                    select prj).ToList<GetAllProjectTeamAssignmentResult>();
+
+                // Create a table from the query.
+                return listProjectTeamAssignment;
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
 
         public Project GetProjectByID(int Id)

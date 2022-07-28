@@ -10,85 +10,12 @@
   </Table>
   <Table Name="dbo.PersonSlotAssignment" Member="PersonSlotAssignments">
     <Type Name="PersonSlotAssignment">
-      <Column Name="AvailabiltyID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AvailabiltyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SlotID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Slot_PersonSlotAssignment" Member="Slot" ThisKey="SlotID" OtherKey="SlotID" Type="Slot" IsForeignKey="true" />
       <Association Name="TeamMember_PersonSlotAssignment" Member="TeamMember" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ProjectTeamAssignment" Member="ProjectTeamAssignments">
-    <Type Name="ProjectTeamAssignment">
-      <Column Name="ProjectTeamAssignmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="TeamMember_ProjectTeamAssignment" Member="TeamMember" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
-      <Association Name="Project_ProjectTeamAssignment" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Role" Member="Roles">
-    <Type Name="Role">
-      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="Role_TeamMember" Member="TeamMembers" ThisKey="RoleID" OtherKey="RoleID" Type="TeamMember" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Slot" Member="Slots">
-    <Type Name="Slot">
-      <Column Name="SlotID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SlotDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="StartTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="EndTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Slot_Meeting" Member="Meetings" ThisKey="SlotID" OtherKey="SlotID" Type="Meeting" />
-      <Association Name="Slot_PersonSlotAssignment" Member="PersonSlotAssignments" ThisKey="SlotID" OtherKey="SlotID" Type="PersonSlotAssignment" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Task" Member="Tasks">
-    <Type Name="Task">
-      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TaskName" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="TaskNotes" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
-      <Column Name="Iteration" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CompletionPercent" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IsRemoved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsMileStome" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Task_TaskAssignment" Member="TaskAssignments" ThisKey="TaskID" OtherKey="TaskID" Type="TaskAssignment" />
-      <Association Name="Project_Task" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TaskAssignment" Member="TaskAssignments">
-    <Type Name="TaskAssignment">
-      <Column Name="TaskAssignmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Task_TaskAssignment" Member="Task" ThisKey="TaskID" OtherKey="TaskID" Type="Task" IsForeignKey="true" />
-      <Association Name="TeamMember_TaskAssignment" Member="TeamMember" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TeamMember" Member="TeamMembers">
-    <Type Name="TeamMember">
-      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="TeamMember_PersonSlotAssignment" Member="PersonSlotAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="PersonSlotAssignment" />
-      <Association Name="TeamMember_ProjectTeamAssignment" Member="ProjectTeamAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="ProjectTeamAssignment" />
-      <Association Name="TeamMember_TaskAssignment" Member="TaskAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TaskAssignment" />
-      <Association Name="TeamMember_Project" Member="Projects" ThisKey="TeamMemberID" OtherKey="ManagerID" Type="Project" />
-      <Association Name="Role_TeamMember" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.viewTeamManager" Member="viewTeamManagers">
-    <Type Name="viewTeamManager">
-      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(207)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Project" Member="Projects">
@@ -104,6 +31,104 @@
       <Association Name="TeamMember_Project" Member="TeamMember" ThisKey="ManagerID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ProjectTeamAssignment" Member="ProjectTeamAssignments">
+    <Type Name="ProjectTeamAssignment">
+      <Column Name="ProjectTeamAssignmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Project_ProjectTeamAssignment" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+      <Association Name="TeamMember_ProjectTeamAssignment" Member="TeamMember" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Role_TeamMember" Member="TeamMembers" ThisKey="RoleID" OtherKey="RoleID" Type="TeamMember" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Slot" Member="Slots">
+    <Type Name="Slot">
+      <Column Name="SlotID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SlotDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Association Name="Slot_Meeting" Member="Meetings" ThisKey="SlotID" OtherKey="SlotID" Type="Meeting" />
+      <Association Name="Slot_PersonSlotAssignment" Member="PersonSlotAssignments" ThisKey="SlotID" OtherKey="SlotID" Type="PersonSlotAssignment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaskAssignment" Member="TaskAssignments">
+    <Type Name="TaskAssignment">
+      <Column Name="TaskAssignmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TeamMember_TaskAssignment" Member="TeamMember" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TeamMember" IsForeignKey="true" />
+      <Association Name="Task_TaskAssignment" Member="Task" ThisKey="TaskID" OtherKey="TaskID" Type="Task" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeamMember" Member="TeamMembers">
+    <Type Name="TeamMember">
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TeamMember_PersonSlotAssignment" Member="PersonSlotAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="PersonSlotAssignment" />
+      <Association Name="TeamMember_Project" Member="Projects" ThisKey="TeamMemberID" OtherKey="ManagerID" Type="Project" />
+      <Association Name="TeamMember_ProjectTeamAssignment" Member="ProjectTeamAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="ProjectTeamAssignment" />
+      <Association Name="TeamMember_TaskAssignment" Member="TaskAssignments" ThisKey="TeamMemberID" OtherKey="TeamMemberID" Type="TaskAssignment" />
+      <Association Name="Role_TeamMember" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.viewProject" Member="viewProjects">
+    <Type Name="viewProject">
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.viewTeamManager" Member="viewTeamManagers">
+    <Type Name="viewTeamManager">
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(207)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Task" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="TaskNotes" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
+      <Column Name="Iteration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompletionPercent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IsRemoved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsMileStone" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Task_TaskAssignment" Member="TaskAssignments" ThisKey="TaskID" OtherKey="TaskID" Type="TaskAssignment" />
+      <Association Name="Project_Task" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CreateMeetingSlots" Method="CreateMeetingSlots">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetAllActiveTasks" Method="GetAllActiveTasks">
+    <ElementType Name="GetAllActiveTasksResult">
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="TaskNotes" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
+      <Column Name="Iteration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompletionPercent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IsRemoved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IsMileStone" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.GetAllProjects" Method="GetAllProjects">
     <ElementType Name="GetAllProjectsResult">
       <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -114,6 +139,81 @@
       <Column Name="IsRetired" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
       <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAllProjectTeamAssignment" Method="GetAllProjectTeamAssignment">
+    <ElementType Name="GetAllProjectTeamAssignmentResult">
+      <Column Name="ProjectTeamAssignmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ProjectStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProjectEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TeamMemberID1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAllRoles" Method="GetAllRoles">
+    <ElementType Name="GetAllRolesResult">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAllTeamMember" Method="GetAllTeamMember">
+    <ElementType Name="GetAllTeamMemberResult">
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMeetingSlots" Method="GetMeetingSlots">
+    <ElementType Name="GetMeetingSlotsResult">
+      <Column Name="SlotID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SlotDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetPersonSlotAssignment" Method="GetPersonSlotAssignment">
+    <ElementType Name="GetPersonSlotAssignmentResult">
+      <Column Name="AvailabiltyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SlotID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SlotDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTeamMemberSlotAssignment" Method="GetTeamMemberSlotAssignment">
+    <Parameter Name="TeamMemberID" Parameter="teamMemberID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTeamMemberSlotAssignmentResult">
+      <Column Name="AvailabiltyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamMemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Initials" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SlotID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SlotDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

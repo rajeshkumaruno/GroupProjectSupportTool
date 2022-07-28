@@ -37,7 +37,7 @@
             <div class="container">
 
                 <nav>
-                    <a class="logo" href="index.html"><img height = 44px src="img/gpt_logo.png" alt="Group Project Tracker Logo"></a>
+                    <a class="logo" href="Default.aspx"><img height = 44px src="img/gpt_logo.png" alt="Group Project Tracker Logo"></a>
                     <ul class="primary-nav">
 
                         <li><div class = "nav-div">
@@ -64,9 +64,9 @@
                         <a class="nav-icon-active" href ="#"><img  height= 30px src="img/tasks-active-icon.png"></a>
                         <a class="project-dropbtn">Tasks</a>
                         <div class="project-dropdown-content">
-                          <a href="index.apsx">View Task</a>
-                          <a href="index.apsx">Add Task</a>
-                          <a href="index.apsx">Update Task</a>
+                          <a href="TaskView.aspx">View Task</a>
+                          <a href="TaskAdd.aspx">Add Task</a>
+                          <a href="TaskView.aspx">Update Task</a>
                         
                         </div>
                         
@@ -76,7 +76,7 @@
                         <li>
                             <a class="nav-icon" href ="#"><img  height= 30px src="img/meetings-icon.png"></a>
                             <a class="nav-icon-active" href ="#"><img  height= 30px src="img/meetings-active-icon.png"></a>
-                            <a class="nav-text" href="#">Meetings</a></li>
+                            <a class="nav-text" href="Default.aspx">Meetings</a></li>
 
                         <li>
                             <a class="nav-icon" href ="about.aspx"><img  height= 30px src="img/about-icon.png"></a>
