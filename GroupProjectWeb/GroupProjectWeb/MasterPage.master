@@ -79,6 +79,7 @@
                         <div class="project-dropdown-content">
                           <a href="TeamMemberView.aspx">View TeamMember</a>
                           <a href="TeamMemberAdd.aspx">Add TeamMember</a>
+                            <a href="TaskAssignment.aspx">Assign Task to Person</a>
                         
                         </div>
                         
@@ -87,10 +88,16 @@
 
                 </li>
 
-                        <li>
-                            <a class="nav-icon" href ="#"><img  height= 30px src="img/meetings-icon.png"></a>
-                            <a class="nav-icon-active" href ="#"><img  height= 30px src="img/meetings-active-icon.png"></a>
-                            <a class="nav-text" href="Default.aspx">Meetings</a></li>
+                    <li> <div class="project-dropdown">
+                        <a class="nav-icon" href ="#"><img  height= 30px src="img/tasks-icon.png"></a>
+                        <a class="nav-icon-active" href ="#"><img  height= 30px src="img/tasks-active-icon.png"></a>
+                        <a class="project-dropbtn">Meeting</a>
+                        <div class="project-dropdown-content">
+                          <a href="Meeting.aspx">Schedule Meeting</a>
+                        
+                        </div>
+                        
+                      </div>
 
                         <li>
                             <a class="nav-icon" href ="about.aspx"><img  height= 30px src="img/about-icon.png"></a>
