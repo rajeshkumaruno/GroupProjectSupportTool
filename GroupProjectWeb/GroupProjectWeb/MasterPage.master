@@ -93,7 +93,7 @@
                         <a class="nav-icon-active" href ="#"><img  height= 30px src="img/tasks-active-icon.png"></a>
                         <a class="project-dropbtn">Meeting</a>
                         <div class="project-dropdown-content">
-                          <a href="Meeting.aspx">Schedule Meeting</a>
+                          <a href="MeetingAdd.aspx">Schedule Meeting</a>
                         
                         </div>
                         
