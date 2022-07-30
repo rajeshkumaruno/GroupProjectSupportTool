@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GroupProjectDataContext">
+    <Position X="4.25" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>YMCwGgDAgABBABgAIdEEUhgMAjAGAIUYAEgIIABaFQE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.PersonSlotAssignment" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAkwAABAAgAEAAAQAUBAAABiCQAAEAAAIAGgQAEBoE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.Project" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>GAMkAAEFAACFIBAASQkIAAgPzCAEIAAAAAAYSCAHgAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.ProjectTeamAssignment" BaseTypeListCollapsed="true">
+    <Position X="29.25" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAAkAIABAAAEAAAAQAEACAADjCAAIAAAAAAAEAAEDIE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.Role" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AoAgAAIBAAAACIAAQAEQAAABiCAAAACAIEAAEEAEAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.TaskAssignment" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="14.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAkAAABAAAAgAAAQAkAwAABiCgABAAAIEAEAAAEBIE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.TeamMember" BaseTypeListCollapsed="true">
+    <Position X="11" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>FEAggEIRAAkBIAABUBGQAAwFySIwFBAAKEQAAEAAHYk=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.viewProject">
+    <Position X="26" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAKBAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.viewTeamManager">
+    <Position X="21" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAAAAAAAAAABIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.Task" BaseTypeListCollapsed="true">
+    <Position X="1" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AICogCAVEABUgCYTZAEACAAjjCoQIAAQIAUmAMAAD0k=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.viewRole">
+    <Position X="22.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAAEAAEAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.viewTeamMember">
+    <Position X="23.5" Y="13" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAAAAAAAAAABIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.viewSlot">
+    <Position X="26.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAgAAACAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.Meeting" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAiQAABAAgREAAAQAEAIAQBiCAAQAAAAAACgAgAAgg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.Slot" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="14.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgQCBBAAgBEAAIQAEAgAABqCEwIAAABEAKYQAAECA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllActiveTasksResult">
+    <Position X="6" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAIACAEAAAAgCQCDAAAAAAqBAgAIAAAAAAgAEAAAkk=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllProjectsResult">
+    <Position X="9" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAACAAAAACQCIIAQKRAAEAAAAAAAQACAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllProjectTeamAssignmentResult">
+    <Position X="11" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>FAAAAEIAAAGAAAAACQGQAAQKRAAAAAEAgEAAECAAhIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllRolesResult">
+    <Position X="26.25" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAAEAAEAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllTeamMemberResult">
+    <Position X="3.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEIAAAEAAAAAAAGQAAQAQAAAAAAAAEAAEAAABIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetMeetingSlotsResult">
+    <Position X="6.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAgAAAAAAAAAAAAAIAEgAAAABAAAQAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetPersonSlotAssignmentResult">
+    <Position X="14.25" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQEAAAAkAAAAAAAGBAAQAYAUgAEAABEAAUQAABIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetTeamMemberSlotAssignmentResult">
+    <Position X="20.75" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAAQEAAAAkAAAAAAAGBAAQAYAUgAEAABEAAUQAABIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetAllTaskForProjectResult">
+    <Position X="26" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAIACAEAAAAgCQCBAAAAAAiBAgAIAAAAAAgAEAAAkk=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.CheckIfTaskAssignedResult">
+    <Position X="21.25" Y="14.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAABIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetTaskByMemberResult">
+    <Position X="14.25" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGAAAAGAgAAADQEAAAAIAAgABAAAAAAAACAAhIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uno.GroupProjectSupportTool.DAL.GetTaskByProjectResult">
+    <Position X="17.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGAAAAGAgAAADQEAAAAIAAgABAAAAAAAACAAhIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
